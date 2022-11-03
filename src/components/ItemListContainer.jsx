@@ -1,6 +1,6 @@
 const ItemListContainer = ({greeting}) =>{
 
-    return prompt("Hola como estas Bienvenido!! Indicanos tu Nombre")
+    return prompt(greeting)
 }
 
 export default ItemListContainer

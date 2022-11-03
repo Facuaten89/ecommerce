@@ -61,8 +61,8 @@ button {
   margin: 0 auto;
 
   &__logo {
-    width: 70px;
-    height: 70px;
+    width: 90px;
+    height: 90px;
     padding: 0;
     height: auto;
   }
@@ -129,7 +129,8 @@ button {
   }
 
   &__button {
-    background: #000;
+    margin-right: 15px;
+    background: rgb(111, 47, 141);
     color: #fff;
     height: max-content;
     width: max-content;
@@ -247,4 +248,7 @@ button {
     color: white;
   }
 }
+
+
+
 @import "~bootstrap/scss/bootstrap";

@@ -1,34 +1,35 @@
 
-import AppContainer from "./components/AppContainer";
-import Item from "./components/item"
-import Button from "./components/Button"
-import Navbar from "./components/Navbar"
-import Banner from "./components/Banner"
-import Footer from "./components/Footer"
-import ItemListcontaimer from "./components/ItemListContainer"
+
 import "./styles.css/styles.scss";
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { Category } from "./pages/Category";
+import { Detail } from "./pages/Detail";
+import { UserLayout } from "./components/UserLayout";
 
 function App() {
+
+
   return (
     <div className="App">
+<BrowserRouter>
+<Routes>
 
-<Navbar></Navbar>
+  <Route path= {"/"} element= {<UserLayout/>} >
+  <Route index element = {<Home/>} />
+  <Route path= {"/category/:categoryId"} element= {<Category/>} />
+  <Route path={"/product/:productId"} element={<Detail />} />
+  <Route path="/cart" element={<div>Cart</div>} />
+  </Route>
 
-<ItemListcontaimer greeting></ItemListcontaimer>
-      
-<Banner promocion="Unete al club de descuentos" boton = "registrate"></Banner>
+  </Routes>
+
+
+</BrowserRouter>
 
 
 
-<main className='content'>
-
-  <AppContainer/>
-
-</main>
-<Banner promocion="Aprovecha las mejores Promociones" boton ="unete"></Banner>
-
-<Footer></Footer>
 </div>
   );
  }
