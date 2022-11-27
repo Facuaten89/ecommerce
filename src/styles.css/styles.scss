@@ -51,6 +51,20 @@ button {
 }
 
 
+
+.grid{
+  display: grid;
+  grid-auto-flow: column;
+  gap: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  span{
+    font-size: 26px;
+  }
+}
+
 .header {
   display: flex;
   align-items: center;

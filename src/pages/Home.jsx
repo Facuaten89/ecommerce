@@ -1,35 +1,46 @@
 
-import AppContainer from "../components/ItemContainer";
-import Banner from "../components/Banner"
-import ItemListcontaimer from "../components/ItemListContainer"
-import "../styles.css/styles.scss";
-import { UserLayout } from "../components/UserLayout";
+
+import { useEffect, useState } from "react";
+import { getProducts, cargarData } from "../api/products";
+import  Banner  from "../components/Banner";
+import { Button } from "../components/Button"
+import  ItemContainer  from "../components/ItemContainer";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { IconSelector } from "../components/IconSelector";
 
 
 export const Home = () => { 
 
-return ( 
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-<>
-
-
-      
-<Banner promocion="Unete al club de descuentos" boton = "registrate"></Banner>
-
-
-
-<main className='content'>
-
-  <AppContainer/>
-
-</main>
-<Banner promocion="Aprovecha las mejores Promociones" boton ="unete"></Banner>
-
-{/* <Button leftIcon={<AifillCarryOut/>} rightIcon = {<AifillCarryOut/>}>haz algo</Button>  */}
+  useEffect(() => {
+    setProducts([]);
+    setLoading(true);
+    getProducts()
+      .then((Items) => {
+        setProducts(Items);
+        setLoading(false);
+      })
+      .catch((e) => console.log(e));
+  }, []);
 
 
-
-</>
-
-);
- }
+  return (
+    <>
+      <Banner
+        promocion="ÚNETE AL CLUB Y CONSIGUE UN 15% DE DESCUENTO"
+        boton="registrate"
+        onClick={() => console.log("click en registrate")}
+      />
+      <main className="content">
+        <ItemContainer products={products} loading={loading} />
+      </main>
+      <Banner
+        promocion="ÚNETE AL CLUB Y CONSIGUE UN 35% DE DESCUENTO"
+        boton="unete"
+        onClick={() => console.log("click en unete")}
+      />
+    </>
+  );
+};

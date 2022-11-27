@@ -2,7 +2,7 @@
 
 const Tag =(props) => {
 
-    return <><p>Holamundo</p> 
+    return <><h5>vinos</h5> 
     
     <span className='card__tag'>{props.titulo}</span></>
     

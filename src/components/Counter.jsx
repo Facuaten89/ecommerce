@@ -1,57 +1,35 @@
-import { useState, useEffect } from "react";
-import Button from "./Button"
 
-const Counter = ({reducirPrecio,onAdd}) => {
-  //el numero nunca debe superar el stock
-  //si no hay stock no se debe ejecutar la funcion
-  //si hay stock se debe ejecutar la funcion onAdd
+import { useState } from "react";
+import  Button  from "./Button";
 
-  const [contador,setContador] = useState(0)
-  const [mensaje,setMensaje] = useState (false)
+const Counter = ({ stock, onAdd }) => {
+  const [contador, setContador] = useState(0);
 
   const handleAdd = () => {
-  setContador(contador + 1)
- 
+    if (contador < stock) {
+      setContador(contador + 1);
+    }
   };
-  
+
   const handleSubstract = () => {
     if (contador > 0) setContador(contador - 1);
   };
-   /* los tres usos de useEffect */
-
-useEffect(()=>{console.log("se vuelve a renderizar")})
-
-useEffect (()=>{console.log("se ejecuta cuando el componenete es montado")
-},[])
-
-
-  useEffect (()=>{
-
-console.log("se ejecuta cuando cambia el contador")
-if (contador >  100){
-  setMensaje (true)
-  reducirPrecio()
- } 
-},[contador]) 
-
+  
   return (
     <div className="grid">
-      {mensaje ? <span>Obtienen 10% de descuento</span> : null}
-
-        <Button onClick = {() => handleAdd()}> sumar </Button>
-        <span><h3> {contador} </h3></span>
-
-        <Button onClick = {() => handleSubstract()}> restar </Button>
-        <Button
+      <Button onClick={handleAdd}> Sumar </Button>
+      <span style={{ minWidth: 25 }}>{contador}</span>
+      <Button onClick={handleSubstract}> Restar </Button>
+      <Button
         onClick={() => {
-          if (contador) onAdd();
+          if (contador) onAdd(contador);
         }}
         disabled={!contador}
       >
-        {" "}
-        Agregar al carrito{" "}
+        Agregar al carrito
       </Button>
-   </div>
-   ); 
+    </div>
+  );
 };
-export default Counter
+
+export default Counter;

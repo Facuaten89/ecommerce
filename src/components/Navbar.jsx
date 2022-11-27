@@ -1,14 +1,21 @@
 
-import CartWidger from "./CartWidger"
-import { Button } from 'react-bootstrap';
+
 import {Link,NavLink } from "react-router-dom";
 import "../styles.css/Navbar.scss"
+
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useCartContext } from "../Context/cartContext";
 
 const links = ["malbec","blanco","cabernet","syrah"]
 
 
-const Navbar = () =>{
-return  <header className="header">
+export const Navbar = () => {
+  const { cart, getCartQty } = useCartContext();
+  console.log({ cart });
+  return (
+    <header className="navbar">
+
+
  
   <Link to="/">
 
@@ -29,12 +36,11 @@ return  <header className="header">
           );
         })}
       </div>
-      <div className="header__buttons">
-        <CartWidger></CartWidger>
-        <Link to="/cart">Carrito</Link>
-      </div>
-
+      <Link to="/cart" className="navbar__cart">
+        <AiOutlineShoppingCart />{" "}
+        <span className="navbar__cart-qty">{getCartQty()}</span>
+      </Link>
 </header> 
+  )
 }
 
-export default Navbar
